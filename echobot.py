@@ -23,3 +23,10 @@ def get_updates():
 	get_updates_url = URL + "getUpdates"
 	updates = get_json_from_url(get_updates_url)
 	return updates
+
+
+def get_last_chat_id_and_text(updates):
+	num_updates = len(updates["result"])
+	chat_id = updates['result'][6]['message']['chat']['id']
+	text = updates['result'][6]['message']['text']
+	return (chat_id, text)
