@@ -38,4 +38,5 @@ def send_message(reply, chat_id):
 
 
 chat_id, text = get_last_chat_id_and_text(get_updates())
-msg = send_message(text, chat_id)
+send_message(text, chat_id)
+print(json.dumps(get_updates(), indent=4))
