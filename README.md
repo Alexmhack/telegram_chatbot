@@ -61,3 +61,6 @@ https://api.telegram.org/bot<your-bot-token>/sendMessage?chat_id=<chat-id>&text=
 
 Once you've visited this URL, you should see a message from your Bot sent to the chat conversation 
 which says "TestReply".
+
+By using the requests module from python we can use the urls from telegram api to access the messages
+and send messages and many more things.
