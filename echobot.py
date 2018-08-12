@@ -11,3 +11,9 @@ def get_content(url):
 	response = requests.get(url)
 	content = response.content.decode("utf-8")
 	return content
+
+
+def get_json_from_url(url):
+	content = get_content(url)
+	js = json.loads(content)
+	return js
