@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # telegram bot token
-alexmhack_bot
+env.json
