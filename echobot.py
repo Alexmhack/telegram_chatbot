@@ -34,4 +34,4 @@ def get_last_chat_id_and_text(updates):
 
 def send_message(reply, chat_id):
 	url = URL + "sendMessage?text={}&chat_id={}".format(text, chat_id)
-	get_content(URL)
+	get_content(url)
