@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 
 with open("env.json") as f:
 	data = json.load(f)
@@ -27,16 +28,25 @@ def get_updates():
 
 def get_last_chat_id_and_text(updates):
 	num_updates = len(updates["result"])
-	chat_id = updates['result'][6]['message']['chat']['id']
-	text = updates['result'][6]['message']['text']
+	chat_id = updates['result'][num_updates - 1]['message']['chat']['id']
+	text = updates['result'][num_updates - 1]['message']['text']
 	return (chat_id, text)
 
 
 def send_message(reply, chat_id):
-	url = URL + "sendMessage?text={}&chat_id={}".format(text, chat_id)
+	url = URL + "sendMessage?text={}&chat_id={}".format(reply, chat_id)
 	get_content(url)
 
 
-chat_id, text = get_last_chat_id_and_text(get_updates())
-send_message(text, chat_id)
-print(json.dumps(get_updates(), indent=4))
+def main():
+	last_textchat = (None, None)
+	while True:
+		chat_id, text = get_last_chat_id_and_text(get_updates())
+		if (chat_id, text) != last_textchat:
+			send_message(text, chat_id)
+			last_textchat = (chat_id, text)
+		time.sleep(0.5)
+
+
+if __name__ == '__main__':
+	main()
